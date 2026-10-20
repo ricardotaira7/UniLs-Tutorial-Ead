@@ -133,6 +133,13 @@ body.bar-shown .viewbar{top:52px}
 .viewbar .seg{margin-left:auto;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)}
 .viewbar .seg button{color:#cfcfd8}
 .viewbar .seg button.on{background:#fff;color:var(--ink)}
+.pdf-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;white-space:nowrap;transition:background .2s,border-color .2s}
+.pdf-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5)}
+.nl-pdf{margin-top:10px;border-top:1px solid var(--line);padding-top:12px}
+.viewbar .vb-txt{flex:1 1 260px;min-width:0}
+.foot-pdf{margin-top:14px;align-self:flex-start;max-width:100%;flex-wrap:wrap;white-space:normal;row-gap:2px;border-radius:18px}
+.pdf-v{font-weight:600;opacity:.8}
+@media(max-width:899px){.viewbar .pdf-btn{display:none}}
 
 /* generic block */
 .blk{padding:60px 24px}
@@ -279,7 +286,9 @@ figcaption{padding:12px 16px;font-size:.88rem;color:var(--muted);border-top:1px 
 footer{background:#141418;color:#c7c7d0;padding:42px 24px 34px}
 .foot{max-width:var(--max);margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
 .foot .logo{background:#fff;border-radius:8px;padding:7px 11px;display:inline-flex}
-.foot .logo img{height:30px}
+.foot .logo img{height:30px;width:auto;max-width:none}
+.foot .logo{flex:none}
+.foot .addr{min-width:0;overflow-wrap:anywhere}
 .foot .addr{font-size:.92rem;line-height:1.7}
 .foot .addr b{color:#fff;display:block;font-size:1rem;margin-bottom:3px}
 .foot .addr a{color:#e9a6ae}
@@ -555,6 +564,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
   <button class="nav-close" id="navClose" aria-label="Fechar menu">&times;</button>
   <h3>Navegação</h3>
   <div class="nav-group nav-ink">Visão geral</div><a href="#plataformas" class="nl-ink"><span class="nl-dot nl-dot-ink"></span>As duas plataformas</a><div class="nav-group nav-red">Plataforma 1 · Portal do Aluno</div><a href="#portal" class="nl-red"><span class="nl-dot nl-dot-red"></span>Portal do Aluno</a><a href="#ava" class="nl-red"><span class="nl-dot nl-dot-red"></span>AVA · Ambiente Virtual de Aprendizagem</a><div class="nav-group nav-green">Plataforma 2 · Google Sala de Aula</div><a href="#classroom" class="nl-green"><img class="nl-logo" src="data:image/png;base64,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" alt="">Google Sala de Aula (Classroom)</a><div class="nav-group nav-ink">Informações gerais</div><a href="#senha" class="nl-ink"><span class="nl-dot nl-dot-ink"></span>Recuperação de senha e acessos</a><a href="#calendario" class="nl-ink"><span class="nl-dot nl-dot-ink"></span>Acompanhamento e prazos</a><a href="#atividades" class="nl-ink"><span class="nl-dot nl-dot-ink"></span>Atividades Complementares</a><a href="#cpa" class="nl-ink"><span class="nl-dot nl-dot-ink"></span>CPA · Avaliação</a><a href="#contato" class="nl-ink"><span class="nl-dot nl-dot-ink"></span>Contato (NEAD)</a>
+  <a class="nl-pdf" href="Guia_do_Estudante_EAD_Computador_v24.pdf" download data-pdf data-pdf-desktop="Guia_do_Estudante_EAD_Computador_v24.pdf" data-pdf-mobile="Guia_do_Estudante_EAD_Celular_v24.pdf"><span class="nl-dot nl-dot-ink"></span>Baixar o guia em PDF <span class="pdf-v">(visão computador)</span></a>
 </nav>
 
 <section class="hero">
@@ -584,6 +594,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
       <button type="button" data-set="desktop" class="on" aria-pressed="true">&#128187; Computador</button>
       <button type="button" data-set="mobile" aria-pressed="false">&#128241; Celular</button>
     </div>
+    <a class="pdf-btn" href="Guia_do_Estudante_EAD_Computador_v24.pdf" download data-pdf data-pdf-desktop="Guia_do_Estudante_EAD_Computador_v24.pdf" data-pdf-mobile="Guia_do_Estudante_EAD_Celular_v24.pdf" aria-label="Baixar o guia em PDF, visão computador"><span aria-hidden="true">&#11015;</span> Baixar PDF</a>
   </div>
 </div>
 
@@ -1171,6 +1182,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
     <div class="credit">
       <span class="cr-title">Guia do Estudante EAD</span>
       <span class="cr-by">Desenvolvido por <strong>Ricardo Taira</strong></span>
+      <a class="pdf-btn foot-pdf" href="Guia_do_Estudante_EAD_Computador_v24.pdf" download data-pdf data-pdf-desktop="Guia_do_Estudante_EAD_Computador_v24.pdf" data-pdf-mobile="Guia_do_Estudante_EAD_Celular_v24.pdf" aria-label="Baixar o guia em PDF, visão computador"><span aria-hidden="true">&#11015;</span> Baixar o guia em PDF <span class="pdf-v">(visão computador)</span></a>
     </div>
   </div>
   <div class="foot-bottom">Portal do Aluno · AVA (Ambiente Virtual de Aprendizagem) · Google Sala de Aula</div>
@@ -1231,6 +1243,13 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
       b.classList.toggle('on',on);
       b.setAttribute('aria-pressed',on?'true':'false');
     });
+    // o PDF acompanha a visao selecionada
+    var nome = v==='mobile' ? 'celular' : 'computador';
+    document.querySelectorAll('[data-pdf]').forEach(function(a){
+      a.setAttribute('href', a.getAttribute(v==='mobile' ? 'data-pdf-mobile' : 'data-pdf-desktop'));
+      if(a.hasAttribute('aria-label')) a.setAttribute('aria-label','Baixar o guia em PDF, visão '+nome);
+      var t=a.querySelector('.pdf-v'); if(t) t.textContent='(visão '+nome+')';
+    });
   }
   document.querySelectorAll('.seg button').forEach(function(b){
     b.addEventListener('click',function(){ setView(b.getAttribute('data-set')); });
@@ -1273,6 +1292,18 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
     var first=f[0], last=f[f.length-1];
     if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
     else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  });
+
+  document.querySelectorAll('[data-pdf]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(!/^https?:$/.test(location.protocol)) return;
+      e.preventDefault();
+      var href=a.getAttribute('href');
+      fetch(href,{method:'HEAD'}).then(function(r){
+        if(!r.ok) throw 0;
+        var t=document.createElement('a'); t.href=href; t.download=href; document.body.appendChild(t); t.click(); t.remove();
+      }).catch(function(){ window.print(); });
+    });
   });
 
   toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:smooth()});});
